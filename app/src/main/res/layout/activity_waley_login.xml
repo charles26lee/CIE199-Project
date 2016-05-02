@@ -7,28 +7,24 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.adeejavier.waley.WaleyLogin"
-    android:background="#acafb3">
+    tools:context="com.example.adeejavier.waley.WaleyLogin">
 
     <ImageView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="200dp"
         android:id="@+id/wLogo"
         android:src="@drawable/waleyicon"
-        android:layout_alignParentTop="true"
-        android:layout_marginBottom="30dp"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="30dp" />
+        android:layout_below="@+id/textview_subtext"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="30dp" />
 
     <EditText
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:ems="10"
-        android:id="@+id/inputUname"
+        android:id="@+id/edittext_username"
         android:hint="username"
         android:layout_below="@+id/wLogo"
         android:layout_centerHorizontal="true"
@@ -39,13 +35,13 @@
         android:layout_height="wrap_content"
         android:inputType="textPassword"
         android:ems="8"
-        android:id="@+id/inputPWord"
+        android:id="@+id/edittext_password"
         android:paddingBottom="10dp"
-        android:layout_below="@+id/inputUname"
-        android:layout_alignLeft="@+id/inputUname"
-        android:layout_alignStart="@+id/inputUname"
-        android:layout_alignRight="@+id/inputUname"
-        android:layout_alignEnd="@+id/inputUname"
+        android:layout_below="@+id/edittext_username"
+        android:layout_alignLeft="@+id/edittext_username"
+        android:layout_alignStart="@+id/edittext_username"
+        android:layout_alignRight="@+id/edittext_username"
+        android:layout_alignEnd="@+id/edittext_username"
         android:hint="password"
         android:textSize="20dp" />
 
@@ -53,11 +49,33 @@
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:text="LOG - IN"
-        android:id="@+id/btn_log"
+        android:id="@+id/button_login"
         android:paddingTop="10dp"
-        android:layout_below="@+id/inputPWord"
+        android:layout_below="@+id/edittext_password"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
-        android:textSize="20dp" />
+        android:layout_marginTop="20dp"
+        android:textSize="30dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="WALEY"
+        android:id="@+id/textview_title"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:textSize="40dp"
+        android:layout_marginTop="20dp"
+        android:textAlignment="center" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="your friendly financial application"
+        android:id="@+id/textview_subtext"
+        android:textSize="20dp"
+        android:textIsSelectable="false"
+        android:layout_below="@+id/textview_title"
+        android:layout_centerHorizontal="true"
+        android:textAlignment="center" />
 
 </RelativeLayout>

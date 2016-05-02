@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.adeejavier.waley.FinancesActivity">
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="FINANCES"
+        android:id="@+id/button_finances_1"
+        android:textSize="20dp"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button_finances_1"
+        android:layout_centerHorizontal="true"
+        android:weightSum="2"
+        android:id="@+id/linearLayout">
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="INCOME"
+            android:id="@+id/button_income_1"
+            android:textSize="20dp"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
+            android:layout_below="@+id/button_finances_1"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_weight="1" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="EXPENSES"
+            android:id="@+id/button_expenses_1"
+            android:textSize="20dp"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
+            android:layout_alignTop="@+id/button_income_1"
+            android:layout_alignRight="@+id/button_finances_1"
+            android:layout_alignEnd="@+id/button_finances_1"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/listview_finances"
+        android:layout_below="@+id/linearLayout"
+        android:layout_centerHorizontal="true" />
+
+    <ImageButton
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:id="@+id/imagebutton_add"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:scaleType="fitXY" />
+
+</RelativeLayout>

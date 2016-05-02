@@ -16,19 +16,44 @@
         android:id="@+id/textview_hello"
         android:textIsSelectable="false"
         android:textSize="50dp"
-        android:layout_marginTop="112dp"
+        android:layout_marginTop="80dp"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="50dp" />
 
     <Button
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:text="FINANCES"
-        android:id="@+id/button_finances"
+        android:id="@+id/button_finances_1"
         android:layout_below="@+id/textview_hello"
         android:layout_centerHorizontal="true"
         android:textSize="30dp"
         android:paddingTop="15dp"
+        android:paddingBottom="15dp" />
+
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="INCOME"
+        android:id="@+id/button_income_1"
+        android:textSize="30dp"
+        android:paddingTop="15dp"
         android:paddingBottom="15dp"
+        android:layout_below="@+id/button_finances_1"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp" />
+
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="EXPENSES"
+        android:id="@+id/button_expenses"
+        android:textSize="30dp"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:layout_below="@+id/button_income_1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp" />
+
 </RelativeLayout>
