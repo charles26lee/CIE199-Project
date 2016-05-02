@@ -1,9 +1,9 @@
 package com.example.adeejavier.waley;
 
-import android.support.v7.app.AppCompatActivity;
+import android.app.Activity;
 import android.os.Bundle;
 
-public class AddActivity extends AppCompatActivity {
+public class AddActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
