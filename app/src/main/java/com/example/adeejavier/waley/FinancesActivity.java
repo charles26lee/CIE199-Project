@@ -4,9 +4,11 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 
 public class FinancesActivity extends Activity {
+    private final ArrayAdapter<FinanceEntry> finance_entries_aa = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
