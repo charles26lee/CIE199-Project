@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 
+import java.util.ArrayList;
+
 public class FinancesActivity extends Activity {
     private final ArrayAdapter<FinanceEntry> finance_entries_aa = null;
 
@@ -23,5 +25,13 @@ public class FinancesActivity extends Activity {
                 startActivity(intent_send);
             }
         });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        FinanceApplication application = (FinanceApplication) getApplication();
+        ArrayList<FinanceEntry> finance_entries_al = application.getFinanceEntries();
     }
 }
