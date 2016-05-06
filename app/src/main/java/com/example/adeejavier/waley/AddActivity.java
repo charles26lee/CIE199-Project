@@ -28,12 +28,13 @@ public class AddActivity extends Activity {
                     amount *= -1;
                 }
 
-                FinanceEntry finance_entry = new FinanceEntry("", amount);
-
                 FinanceApplication application = (FinanceApplication) getApplication();
+
+                FinanceEntry finance_entry = new FinanceEntry("", application.getFinanceMode(), amount);
+
                 application.addFinanceEntry(finance_entry);
 
-                Intent intent_send = new Intent(AddActivity.this, application.getLastActivity());
+                Intent intent_send = new Intent(AddActivity.this, FinancesActivity.class);
                 startActivity(intent_send);
             }
         });

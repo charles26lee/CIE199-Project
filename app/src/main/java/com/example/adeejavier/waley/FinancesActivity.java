@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
+import android.widget.ListView;
 
 import java.util.ArrayList;
 
@@ -25,6 +26,12 @@ public class FinancesActivity extends Activity {
                 startActivity(intent_send);
             }
         });
+
+        final ListView listview_finances = (ListView) findViewById(R.id.listview_finances);
+        listview_finances.setAdapter(finance_entries_aa);
+
+        FinanceApplication application = (FinanceApplication) getApplication();
+        application.loadFinanceEntries();
     }
 
     @Override
@@ -32,6 +39,8 @@ public class FinancesActivity extends Activity {
         super.onStart();
 
         FinanceApplication application = (FinanceApplication) getApplication();
-        ArrayList<FinanceEntry> finance_entries_al = application.getFinanceEntries();
+
+        finance_entries_aa.clear();
+        finance_entries_aa.addAll(application.getFinanceEntries());
     }
 }

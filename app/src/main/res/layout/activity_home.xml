@@ -25,7 +25,7 @@
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:text="FINANCES"
-        android:id="@+id/button_finances_1"
+        android:id="@+id/button_finances"
         android:layout_below="@+id/textview_hello"
         android:layout_centerHorizontal="true"
         android:textSize="30dp"
@@ -36,11 +36,11 @@
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:text="INCOME"
-        android:id="@+id/button_income_1"
+        android:id="@+id/button_income"
         android:textSize="30dp"
         android:paddingTop="15dp"
         android:paddingBottom="15dp"
-        android:layout_below="@+id/button_finances_1"
+        android:layout_below="@+id/button_finances"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp" />
 
@@ -52,7 +52,7 @@
         android:textSize="30dp"
         android:paddingTop="15dp"
         android:paddingBottom="15dp"
-        android:layout_below="@+id/button_income_1"
+        android:layout_below="@+id/button_income"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp" />
 

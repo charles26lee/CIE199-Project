@@ -27,10 +27,11 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/button_finances_1"
-        android:layout_centerHorizontal="true"
         android:weightSum="2"
-        android:id="@+id/linearLayout">
+        android:id="@+id/linearLayout"
+        android:layout_below="@+id/button_finances_1"
+        android:layout_alignRight="@+id/imagebutton_add"
+        android:layout_alignEnd="@+id/imagebutton_add">
 
         <Button
             android:layout_width="0dp"
@@ -40,7 +41,7 @@
             android:textSize="20dp"
             android:paddingTop="15dp"
             android:paddingBottom="15dp"
-            android:layout_below="@+id/button_finances_1"
+            android:layout_below="@+id/button_finances"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_weight="1" />
@@ -53,9 +54,9 @@
             android:textSize="20dp"
             android:paddingTop="15dp"
             android:paddingBottom="15dp"
-            android:layout_alignTop="@+id/button_income_1"
-            android:layout_alignRight="@+id/button_finances_1"
-            android:layout_alignEnd="@+id/button_finances_1"
+            android:layout_alignTop="@+id/button_income"
+            android:layout_alignRight="@+id/button_finances"
+            android:layout_alignEnd="@+id/button_finances"
             android:layout_weight="1" />
     </LinearLayout>
 
