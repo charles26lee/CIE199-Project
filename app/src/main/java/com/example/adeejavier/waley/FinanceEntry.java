@@ -1,7 +1,12 @@
 package com.example.adeejavier.waley;
 
+import android.util.Log;
+
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 
 /**
  * Created by ecce-219-pc09-user01 on 5/4/2016.
@@ -17,8 +22,16 @@ public class FinanceEntry {
         amount = _amount;
     }
 
+    public void convert(double rate) {
+        amount *= rate;
+    }
+
     public String getType() {
         return type;
+    }
+
+    public double getAmount() {
+        return amount;
     }
 
     public JSONObject toJSONObject() {
@@ -27,9 +40,14 @@ public class FinanceEntry {
             json_object.put("description", description);
             json_object.put("type", type);
             json_object.put("amount", amount);
-        } catch (JSONException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            Log.e("ERROR", "Exception occurred: " + e.getMessage());
         }
         return json_object;
+    }
+
+    public String toString() {
+        NumberFormat formatter = new DecimalFormat("#0.00");
+        return formatter.format(amount);
     }
 }

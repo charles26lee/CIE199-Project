@@ -11,69 +11,103 @@
 
     <Button
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:text="FINANCES"
         android:id="@+id/button_finances_1"
-        android:textSize="20dp"
+        android:textSize="25dp"
         android:paddingTop="15dp"
         android:paddingBottom="15dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:background="#91DC5A"
+        android:textColor="#ffffff" />
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:weightSum="2"
-        android:id="@+id/linearLayout"
+        android:id="@+id/linearlayout_1"
         android:layout_below="@+id/button_finances_1"
         android:layout_alignRight="@+id/imagebutton_add"
         android:layout_alignEnd="@+id/imagebutton_add">
 
         <Button
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:text="INCOME"
             android:id="@+id/button_income_1"
-            android:textSize="20dp"
+            android:textSize="25dp"
             android:paddingTop="15dp"
             android:paddingBottom="15dp"
             android:layout_below="@+id/button_finances"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:background="@android:color/transparent" />
 
         <Button
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:text="EXPENSES"
             android:id="@+id/button_expenses_1"
-            android:textSize="20dp"
+            android:textSize="25dp"
             android:paddingTop="15dp"
             android:paddingBottom="15dp"
             android:layout_alignTop="@+id/button_income"
             android:layout_alignRight="@+id/button_finances"
             android:layout_alignEnd="@+id/button_finances"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:background="@android:color/transparent" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_below="@+id/linearlayout_1"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/linearlayout_2"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="TOTAL: "
+            android:id="@+id/textview_label"
+            android:textSize="25dp"
+            android:gravity="center_vertical"
+            android:textColor="#000000" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="0.00"
+            android:id="@+id/textview_total"
+            android:textSize="25dp"
+            android:gravity="center_vertical"
+            android:textColor="#000000" />
     </LinearLayout>
 
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/listview_finances"
-        android:layout_below="@+id/linearLayout"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/linearlayout_2" />
 
     <ImageButton
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:id="@+id/imagebutton_add"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:scaleType="fitXY" />
+        android:scaleType="fitCenter"
+        android:background="@android:color/transparent"
+        android:src="@drawable/plus" />
 
 </RelativeLayout>

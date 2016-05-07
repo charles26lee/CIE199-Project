@@ -25,10 +25,10 @@
         android:inputType="textPersonName"
         android:ems="10"
         android:id="@+id/edittext_username"
-        android:hint="username"
+        android:hint="Username"
         android:layout_below="@+id/wLogo"
         android:layout_centerHorizontal="true"
-        android:textSize="20dp" />
+        android:textSize="25dp" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -42,19 +42,20 @@
         android:layout_alignStart="@+id/edittext_username"
         android:layout_alignRight="@+id/edittext_username"
         android:layout_alignEnd="@+id/edittext_username"
-        android:hint="password"
-        android:textSize="20dp" />
+        android:hint="Password"
+        android:textSize="25dp" />
 
     <Button
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
         android:text="LOG - IN"
         android:id="@+id/button_login"
-        android:paddingTop="10dp"
         android:layout_below="@+id/edittext_password"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:textSize="30dp" />
+        android:textSize="25dp"
+        android:background="#91DC5A"
+        android:textColor="#ffffff" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -64,16 +65,16 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:textSize="40dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="10dp"
         android:textAlignment="center"
         android:textColor="#000000" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="your friendly financial application"
+        android:text="Your friendly financial application!"
         android:id="@+id/textview_subtext"
-        android:textSize="20dp"
+        android:textSize="25dp"
         android:textIsSelectable="false"
         android:layout_below="@+id/textview_title"
         android:layout_centerHorizontal="true"

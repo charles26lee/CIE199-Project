@@ -8,11 +8,11 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="70dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:background="#212121"
+        android:background="#91DC5A"
         android:weightSum="6"
         android:id="@+id/linearlayout_1">
 
@@ -21,9 +21,12 @@
             android:layout_height="match_parent"
             android:id="@+id/imagebutton_cancel"
             android:layout_gravity="center_vertical"
-            android:src="@android:drawable/ic_menu_close_clear_cancel"
+            android:src="@drawable/close"
             android:background="@android:color/transparent"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:scaleType="fitCenter"
+            android:paddingTop="25dp"
+            android:paddingBottom="25dp" />
 
         <Space
             android:layout_width="0dp"
@@ -34,19 +37,23 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:id="@+id/imagebutton_save"
-            android:src="@android:drawable/ic_menu_save"
+            android:src="@drawable/checked"
             android:background="@android:color/transparent"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:scaleType="fitCenter"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp" />
     </LinearLayout>
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="70dp"
         android:layout_below="@+id/linearlayout_1"
         android:layout_centerHorizontal="true"
         android:id="@+id/linearlayout_2"
-        android:gravity="center_vertical|center_horizontal">
+        android:gravity="center_vertical|center_horizontal"
+        android:layout_marginTop="20dp">
 
         <ToggleButton
             android:layout_width="wrap_content"
@@ -55,26 +62,58 @@
             android:checked="true"
             android:textOn="EXPENSES"
             android:textOff="INCOME"
-            android:textSize="30dp"
+            android:textSize="25dp"
             android:background="@android:color/transparent" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"></LinearLayout>
 
     </LinearLayout>
 
     <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="300dp"
-        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/linearlayout_2"
         android:layout_centerHorizontal="true"
-        android:id="@+id/linearlayout_3">
+        android:layout_marginTop="20dp"
+        android:id="@+id/linearlayout_4">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="70dp"
+            android:id="@+id/linearlayout_3"
+            android:gravity="center_vertical|center_horizontal"
+            android:layout_below="@+id/linearlayout_2"
+            android:layout_centerHorizontal="true">
+
+            <EditText
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:ems="10"
+                android:id="@+id/edittext_amount"
+                android:textSize="25dp"
+                android:hint="Amount" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PHP"
+                android:id="@+id/button_currency"
+                android:textSize="25dp"
+                android:background="@android:color/transparent" />
+        </LinearLayout>
 
         <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="80dp"
-            android:inputType="numberDecimal"
-            android:ems="10"
-            android:id="@+id/edittext_amount"
-            android:layout_weight="1"
-            android:layout_marginTop="40dp" />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/edittext_description"
+            android:layout_gravity="right"
+            android:textSize="25dp"
+            android:hint="Description" />
     </LinearLayout>
 </RelativeLayout>

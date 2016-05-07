@@ -2,7 +2,10 @@ package com.example.adeejavier.waley;
 
 import android.app.Application;
 import android.util.Log;
+import android.widget.Toast;
 
+import org.apache.http.client.HttpClient;
+import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -16,13 +19,19 @@ import java.util.ArrayList;
 public class FinanceApplication extends Application {
     private ArrayList<FinanceEntry> finance_entries_al = new ArrayList<>();
     private String finance_mode = "finances";
+    private Currency currency = new Currency("PHP", 1);
 
     private JSONArray finance_entries_json = null;
 
-    public void addFinanceEntry(FinanceEntry finance_entry) {
+    private HttpClient http_client = new DefaultHttpClient();
+
+    public void addFinanceEntry(FinanceEntry finance_entry) throws JSONException {
         finance_entries_al.add(finance_entry);
         finance_entries_json.put(finance_entry.toJSONObject());
-        FSUtil.write(finance_entries_json.toString().getBytes());
+        JSONObject json_file = new JSONObject();
+        json_file.put("finances", finance_entries_json);
+        json_file.put("currency", currency.getName());
+        FSUtil.write(json_file.toString().getBytes());
     }
 
     public void loadFinanceEntries() {
@@ -37,7 +46,19 @@ public class FinanceApplication extends Application {
                 input_stream.close();
                 Log.i("INFO", "Reading done: " + data);
 
-                parseJSONString(data);
+                finance_entries_json = parseJSONString(data);
+                finance_entries_al.clear();
+
+                for (int i = 0; i < finance_entries_json.length(); ++i) {
+                    JSONObject entry_json = finance_entries_json.getJSONObject(i);
+
+                    String description = entry_json.getString("description");
+                    String type = entry_json.getString("type");
+                    double amount = entry_json.getDouble("amount");
+
+                    FinanceEntry entry = new FinanceEntry(description, type, amount);
+                    finance_entries_al.add(entry);
+                }
             } catch (Exception e) {
                 Log.e("ERROR", "Exception occurred: " + e.getMessage());
 
@@ -52,21 +73,39 @@ public class FinanceApplication extends Application {
         } else if (finance_mode == "expenses") {
             ArrayList<FinanceEntry> expenses_entries_al = new ArrayList<>();
             for (FinanceEntry entry : finance_entries_al) {
-                if (entry.getType() == "expenses") {
+                if (entry.getType().equals("expenses")) {
                     expenses_entries_al.add(entry);
                 }
             }
             return expenses_entries_al;
         } else if (finance_mode == "income") {
             ArrayList<FinanceEntry> income_entries_al = new ArrayList<>();
-            for (FinanceEntry entry : income_entries_al) {
-                if (entry.getType() == "income") {
+            for (FinanceEntry entry : finance_entries_al) {
+                if (entry.getType().equals("income")) {
                     income_entries_al.add(entry);
                 }
             }
             return income_entries_al;
         }
         return null;
+    }
+
+    public double getTotalAmount() {
+        double total_amount = 0;
+        for (FinanceEntry entry : finance_entries_al) {
+            if (finance_mode == "finances") {
+                total_amount += entry.getAmount();
+            } else if (finance_mode == "expenses") {
+                if (entry.getType().equals("expenses")) {
+                    total_amount += entry.getAmount();
+                }
+            } else if (finance_mode == "income") {
+                if (entry.getType().equals("income")) {
+                    total_amount += entry.getAmount();
+                }
+            }
+        }
+        return total_amount;
     }
 
     public void setFinanceMode(String _finance_mode) {
@@ -77,8 +116,28 @@ public class FinanceApplication extends Application {
         return finance_mode;
     }
 
-    private void parseJSONString(String json_string) throws JSONException {
+    public HttpClient getHttpClient() {
+        return http_client;
+    }
+
+    public void setCurrency(Currency _currency) {
+        currency = _currency;
+
+        for (FinanceEntry entry : finance_entries_al) {
+            entry.convert(currency.getRate());
+        }
+    }
+
+    public String getCurrencyName() {
+        return currency.getName();
+    }
+
+    public String getCount() {
+        return finance_entries_al.size() + " vs " + finance_entries_json.length();
+    }
+
+    private JSONArray parseJSONString(String json_string) throws JSONException {
         JSONObject json_object = new JSONObject(json_string);
-        finance_entries_json = json_object.getJSONArray("finances");
+        return json_object.getJSONArray("finances");
     }
 }

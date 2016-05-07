@@ -23,37 +23,35 @@
 
     <Button
         android:layout_width="200dp"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:text="FINANCES"
         android:id="@+id/button_finances"
         android:layout_below="@+id/textview_hello"
         android:layout_centerHorizontal="true"
         android:textSize="30dp"
-        android:paddingTop="15dp"
-        android:paddingBottom="15dp" />
+        android:background="#91DC5A"
+        android:textColor="#ffffff" />
 
     <Button
         android:layout_width="200dp"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:text="INCOME"
         android:id="@+id/button_income"
         android:textSize="30dp"
-        android:paddingTop="15dp"
-        android:paddingBottom="15dp"
         android:layout_below="@+id/button_finances"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp" />
+        android:layout_marginTop="10dp"
+        android:background="@android:color/transparent" />
 
     <Button
         android:layout_width="200dp"
-        android:layout_height="wrap_content"
+        android:layout_height="80dp"
         android:text="EXPENSES"
         android:id="@+id/button_expenses"
         android:textSize="30dp"
-        android:paddingTop="15dp"
-        android:paddingBottom="15dp"
         android:layout_below="@+id/button_income"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp" />
+        android:layout_marginTop="10dp"
+        android:background="@android:color/transparent" />
 
 </RelativeLayout>
