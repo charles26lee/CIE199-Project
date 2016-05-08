@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 public class AddActivity extends AppCompatActivity {
@@ -34,23 +35,27 @@ public class AddActivity extends AppCompatActivity {
         imagebutton_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String description = edittext_description.getText().toString();
-                String type = "income";
-                double amount = Double.parseDouble(edittext_amount.getText().toString());
+                if (!edittext_amount.getText().toString().equals("")) {
+                    String description = edittext_description.getText().toString();
+                    String type = "income";
+                    double amount = Double.parseDouble(edittext_amount.getText().toString());
 
-                if (togglebutton_expenses.isChecked()) {
-                    type = "expenses";
-                    amount *= -1;
-                }
+                    if (togglebutton_expenses.isChecked()) {
+                        type = "expenses";
+                        amount *= -1;
+                    }
 
-                FinanceApplication application = (FinanceApplication) getApplication();
-                FinanceEntry finance_entry = new FinanceEntry(description, type, amount);
-                try {
-                    application.addFinanceEntry(finance_entry);
-                    Intent intent_send = new Intent(AddActivity.this, FinancesActivity.class);
-                    startActivity(intent_send);
-                } catch (Exception e) {
-                    Log.e("ERROR", "Exception occurred: " + e.getMessage());
+                    FinanceApplication application = (FinanceApplication) getApplication();
+                    FinanceEntry finance_entry = new FinanceEntry(description, type, amount);
+                    try {
+                        application.addFinanceEntry(finance_entry);
+                        Intent intent_send = new Intent(AddActivity.this, FinancesActivity.class);
+                        startActivity(intent_send);
+                    } catch (Exception e) {
+                        Log.e("ERROR", "Exception occurred: " + e.getMessage());
+                    }
+                } else {
+                    Toast.makeText(AddActivity.this, "Please specify an amount.", Toast.LENGTH_SHORT).show();
                 }
             }
         });

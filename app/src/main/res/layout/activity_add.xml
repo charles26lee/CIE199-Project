@@ -105,7 +105,8 @@
                 android:text="PHP"
                 android:id="@+id/button_currency"
                 android:textSize="25dp"
-                android:background="@android:color/transparent" />
+                android:background="@android:color/transparent"
+                android:gravity="center_vertical|right" />
         </LinearLayout>
 
         <EditText

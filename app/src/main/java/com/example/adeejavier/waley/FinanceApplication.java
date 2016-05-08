@@ -22,6 +22,9 @@ public class FinanceApplication extends Application {
 
     private String finance_mode = "finances";
 
+    private String username = "";
+    private String password = "";
+
     public void addFinanceEntry(FinanceEntry finance_entry) {
         finance_entries_al.add(0, finance_entry);
     }
@@ -35,10 +38,11 @@ public class FinanceApplication extends Application {
             }
             json_file.put("finances", finance_entries_json);
             json_file.put("currency", currency.getName());
+            json_file.put("password", password);
         } catch (Exception e) {
             Log.e("ERROR", "Exception occurred: " + e.getMessage());
         }
-        FSUtil.write(json_file.toString().getBytes(), "finances");
+        FSUtil.write(json_file.toString().getBytes(), username);
     }
 
     public void loadFinanceEntries() {
@@ -46,16 +50,17 @@ public class FinanceApplication extends Application {
             String data = "";
             try {
                 Log.i("INFO", "Reading file...");
-                BufferedInputStream input_stream = new BufferedInputStream(FSUtil.getFileInputStream("finances"));
+                BufferedInputStream input_stream = new BufferedInputStream(FSUtil.getFileInputStream(username));
                 while (input_stream.available() > 0) {
                     data += (char) (input_stream.read());
                 }
                 input_stream.close();
                 Log.i("INFO", "Reading done: " + data);
 
-                JSONObject currency_json = new JSONObject(data);
-                JSONArray finance_entries_json = currency_json.getJSONArray("finances");
-                currency = new Currency(currency_json.getString("currency"), 1);
+                JSONObject json = new JSONObject(data);
+
+                JSONArray finance_entries_json = json.getJSONArray("finances");
+                currency = new Currency(json.getString("currency"), 1);
 
                 for (int i = 0; i < finance_entries_json.length(); ++i) {
                     JSONObject entry_json = finance_entries_json.getJSONObject(i);
@@ -136,5 +141,36 @@ public class FinanceApplication extends Application {
 
     public String getCurrencyName() {
         return currency.getName();
+    }
+
+    public void setUsername(String _username) {
+        username = _username;
+    }
+
+    public void setPassword(String _password) {
+        password = _password;
+    }
+
+    public boolean isValidPassword() {
+        finance_entries_al.clear();
+        if (FSUtil.isStorageReady()) {
+            String data = "";
+            try {
+                Log.i("INFO", "Reading file...");
+                BufferedInputStream input_stream = new BufferedInputStream(FSUtil.getFileInputStream(username));
+                while (input_stream.available() > 0) {
+                    data += (char) (input_stream.read());
+                }
+                input_stream.close();
+                Log.i("INFO", "Reading done: " + data);
+
+                JSONObject json = new JSONObject(data);
+
+                return json.getString("password").equals(password);
+            } catch (Exception e) {
+                Log.e("ERROR", "Exception occurred: " + e.getMessage());
+            }
+        }
+        return true;
     }
 }
