@@ -21,9 +21,9 @@ public class FSUtil {
         return Environment.getExternalStorageDirectory().toString() + "/Waley/";
     }
 
-    public static void write(byte[] data) {
+    public static void write(byte[] data, String filename) {
         File fOutputDir = new File(getStorage());
-        File fOutput = new File(getStorage(), "finances.json");
+        File fOutput = new File(getStorage(),  filename + ".json");
         FileOutputStream fileOutputStream = null;
 
         try {
@@ -40,15 +40,15 @@ public class FSUtil {
         return;
     }
 
-    public static FileInputStream getFileInputStream() {
-        File fInput = new File(getStorage(), "finances.json");
+    public static FileInputStream getFileInputStream(String filename) {
+        File fInput = new File(getStorage(), filename + ".json");
         FileInputStream fileInputStream = null;
 
         try {
             Log.i("INFO", "Accessing file: " + fInput.toString());
             fileInputStream = new FileInputStream(fInput);
         } catch (FileNotFoundException e) {
-            Log.e("ERROR", "File not found: finances.json");
+            Log.e("ERROR", "File not found: " + filename + ".json");
         } catch (Exception e) {
             Log.e("ERROR", "Exception occurred: " + e.getMessage());
         }

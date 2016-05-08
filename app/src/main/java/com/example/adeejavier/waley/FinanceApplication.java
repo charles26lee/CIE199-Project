@@ -2,12 +2,10 @@ package com.example.adeejavier.waley;
 
 import android.app.Application;
 import android.util.Log;
-import android.widget.Toast;
 
 import org.apache.http.client.HttpClient;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedInputStream;
@@ -18,36 +16,46 @@ import java.util.ArrayList;
  */
 public class FinanceApplication extends Application {
     private ArrayList<FinanceEntry> finance_entries_al = new ArrayList<>();
-    private String finance_mode = "finances";
-    private Currency currency = new Currency("PHP", 1);
-
-    private JSONArray finance_entries_json = null;
 
     private HttpClient http_client = new DefaultHttpClient();
+    private Currency currency = new Currency("PHP", 1);
 
-    public void addFinanceEntry(FinanceEntry finance_entry) throws JSONException {
-        finance_entries_al.add(finance_entry);
-        finance_entries_json.put(finance_entry.toJSONObject());
+    private String finance_mode = "finances";
+
+    public void addFinanceEntry(FinanceEntry finance_entry) {
+        finance_entries_al.add(0, finance_entry);
+    }
+
+    public void saveFinanceEntries() {
         JSONObject json_file = new JSONObject();
-        json_file.put("finances", finance_entries_json);
-        json_file.put("currency", currency.getName());
-        FSUtil.write(json_file.toString().getBytes());
+        try {
+            JSONArray finance_entries_json = new JSONArray();
+            for (FinanceEntry entry : finance_entries_al) {
+                finance_entries_json.put(entry.toJSONObject());
+            }
+            json_file.put("finances", finance_entries_json);
+            json_file.put("currency", currency.getName());
+        } catch (Exception e) {
+            Log.e("ERROR", "Exception occurred: " + e.getMessage());
+        }
+        FSUtil.write(json_file.toString().getBytes(), "finances");
     }
 
     public void loadFinanceEntries() {
-        if (FSUtil.isStorageReady()) {
+        if (FSUtil.isStorageReady() && finance_entries_al.isEmpty()) {
             String data = "";
             try {
                 Log.i("INFO", "Reading file...");
-                BufferedInputStream input_stream = new BufferedInputStream(FSUtil.getFileInputStream());
+                BufferedInputStream input_stream = new BufferedInputStream(FSUtil.getFileInputStream("finances"));
                 while (input_stream.available() > 0) {
-                    data += (char)(input_stream.read());
+                    data += (char) (input_stream.read());
                 }
                 input_stream.close();
                 Log.i("INFO", "Reading done: " + data);
 
-                finance_entries_json = parseJSONString(data);
-                finance_entries_al.clear();
+                JSONObject currency_json = new JSONObject(data);
+                JSONArray finance_entries_json = currency_json.getJSONArray("finances");
+                currency = new Currency(currency_json.getString("currency"), 1);
 
                 for (int i = 0; i < finance_entries_json.length(); ++i) {
                     JSONObject entry_json = finance_entries_json.getJSONObject(i);
@@ -61,8 +69,6 @@ public class FinanceApplication extends Application {
                 }
             } catch (Exception e) {
                 Log.e("ERROR", "Exception occurred: " + e.getMessage());
-
-                finance_entries_json = new JSONArray();
             }
         }
     }
@@ -130,14 +136,5 @@ public class FinanceApplication extends Application {
 
     public String getCurrencyName() {
         return currency.getName();
-    }
-
-    public String getCount() {
-        return finance_entries_al.size() + " vs " + finance_entries_json.length();
-    }
-
-    private JSONArray parseJSONString(String json_string) throws JSONException {
-        JSONObject json_object = new JSONObject(json_string);
-        return json_object.getJSONArray("finances");
     }
 }

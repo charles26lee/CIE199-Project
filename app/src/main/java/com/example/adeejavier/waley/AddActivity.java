@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.Toast;
 import android.widget.ToggleButton;
 
 public class AddActivity extends AppCompatActivity {
@@ -64,5 +63,8 @@ public class AddActivity extends AppCompatActivity {
                 startActivity(intent_send);
             }
         });
+
+        FinanceApplication application = (FinanceApplication) getApplication();
+        button_currency.setText(application.getCurrencyName());
     }
 }

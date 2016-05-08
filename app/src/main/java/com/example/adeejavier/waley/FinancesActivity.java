@@ -9,7 +9,6 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -65,6 +64,14 @@ public class FinancesActivity extends AppCompatActivity {
         FinanceApplication application = (FinanceApplication) getApplication();
         application.loadFinanceEntries();
         loadFinances(application.getFinanceMode());
+    }
+
+    @Override
+    protected void onStop() {
+        FinanceApplication application = (FinanceApplication) getApplication();
+        application.saveFinanceEntries();
+
+        super.onStop();
     }
 
     private void loadFinances(String finance_mode) {
